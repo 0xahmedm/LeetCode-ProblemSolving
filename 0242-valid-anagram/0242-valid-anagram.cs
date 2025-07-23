@@ -1,9 +1,11 @@
 public class Solution {
     public bool IsAnagram(string s, string t)
     {
-        if (s.Length != t.Length){
+        if (s.Length != t.Length)
+        {
             return false;
         }
+
         Dictionary<char, int> sCounts = new Dictionary<char, int>();
         Dictionary<char, int> tCounts = new Dictionary<char, int>();
         foreach (char c in s)
@@ -20,29 +22,12 @@ public class Solution {
 
         foreach (char c in t)
         {
-            if (!tCounts.ContainsKey(c))
-            {
-                tCounts.Add(c, 1);
-            }
-            else
-            {
-                tCounts[c]++;
-            }
-        }
-
-        foreach (KeyValuePair<char, int> kvp in sCounts)
-        {
-            if (!tCounts.ContainsKey(kvp.Key))
+            if (!sCounts.ContainsKey(c) || sCounts[c] == 0)
             {
                 return false;
             }
-
-            if (kvp.Value != tCounts[kvp.Key])
-            {
-                return false;
-            }
+            sCounts[c]--;
         }
-
         return true;
     }
 }
