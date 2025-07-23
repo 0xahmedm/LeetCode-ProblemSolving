@@ -1,49 +1,49 @@
 public class Solution {
-    public bool IsAnagram(string s, string t) {
+    public bool IsAnagram(string s, string t)
+    {
         Dictionary<char, int> sCounts = new Dictionary<char, int>();
-    Dictionary<char, int> tCounts = new Dictionary<char, int>();
-    foreach (char c in s)
-    {
-        if (!sCounts.ContainsKey(c))
+        Dictionary<char, int> tCounts = new Dictionary<char, int>();
+        foreach (char c in s)
         {
-            sCounts.Add(c, 1);
+            if (!sCounts.ContainsKey(c))
+            {
+                sCounts.Add(c, 1);
+            }
+            else
+            {
+                sCounts[c]++;
+            }
         }
-        else
-        {
-            sCounts[c]++;
-        }
-    }
 
-    foreach (char c in t)
-    {
-        if (!tCounts.ContainsKey(c))
+        foreach (char c in t)
         {
-            tCounts.Add(c, 1);
+            if (!tCounts.ContainsKey(c))
+            {
+                tCounts.Add(c, 1);
+            }
+            else
+            {
+                tCounts[c]++;
+            }
         }
-        else
-        {
-            tCounts[c]++;
-        }
-    }
 
-if (sCounts.Count != tCounts.Count)
-    {
-        return false;
-    }
-    foreach (KeyValuePair<char, int> kvp in sCounts)
-    {
-        if (!tCounts.ContainsKey(kvp.Key))
+        if (sCounts.Count != tCounts.Count)
         {
             return false;
         }
-
-        if (kvp.Value != tCounts[kvp.Key])
+        foreach (KeyValuePair<char, int> kvp in sCounts)
         {
-            return false;
+            if (!tCounts.ContainsKey(kvp.Key))
+            {
+                return false;
+            }
+
+            if (kvp.Value != tCounts[kvp.Key])
+            {
+                return false;
+            }
         }
 
-    }
-
-    return true;
+        return true;
     }
 }
