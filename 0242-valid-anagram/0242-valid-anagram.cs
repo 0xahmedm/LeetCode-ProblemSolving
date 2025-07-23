@@ -1,6 +1,9 @@
 public class Solution {
     public bool IsAnagram(string s, string t)
     {
+        if (s.Length != t.Length){
+            return false;
+        }
         Dictionary<char, int> sCounts = new Dictionary<char, int>();
         Dictionary<char, int> tCounts = new Dictionary<char, int>();
         foreach (char c in s)
@@ -27,10 +30,6 @@ public class Solution {
             }
         }
 
-        if (sCounts.Count != tCounts.Count)
-        {
-            return false;
-        }
         foreach (KeyValuePair<char, int> kvp in sCounts)
         {
             if (!tCounts.ContainsKey(kvp.Key))
